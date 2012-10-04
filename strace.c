@@ -29,6 +29,7 @@
  */
 
 #include "defs.h"
+#include "get_pids.h"
 #include <stdarg.h>
 #include <sys/param.h>
 #include <fcntl.h>
@@ -577,8 +578,9 @@ printleader(struct tcb *tcp)
 	current_tcp = tcp;
 	current_tcp->curcol = 0;
 
-	if (print_pid_pfx)
-		tprintf("%-5d ", tcp->pid);
+	if (print_pid_pfx) {
+		tprintf("%-5d %-5d %-5d ", tcp->tgid, tcp->ppid, tcp->pid);
+    }
 	else if (nprocs > 1 && !outfname)
 		tprintf("[pid %5u] ", tcp->pid);
 
@@ -654,11 +656,15 @@ expand_tcbtab(void)
 		tcbtab[i++] = newtcbs++;
 }
 
+#define PID_GET_ATTEMPTS 1000
+
 static struct tcb *
 alloctcb(int pid)
 {
 	int i;
+    int attempt;
 	struct tcb *tcp;
+    all_pids_t all_pids;
 
 	if (nprocs == tcbtabsize)
 		expand_tcbtab();
@@ -672,6 +678,19 @@ alloctcb(int pid)
 #if SUPPORTED_PERSONALITIES > 1
 			tcp->currpers = current_personality;
 #endif
+            /* getting all pids */
+            for (attempt = 0; attempt < PID_GET_ATTEMPTS; ++attempt) {
+                if (get_all_pids(&all_pids, tcp->pid)) {
+                    tcp->ppid = 0;
+                    tcp->tgid = tcp->pid;
+                } else {
+                    tcp->pid  = all_pids.pid;
+                    tcp->ppid = all_pids.ppid;
+                    tcp->tgid = all_pids.tgid;
+                    break;
+                }
+            }
+
 			nprocs++;
 			if (debug_flag)
 				fprintf(stderr, "new tcb for pid %d, active tcbs:%d\n", tcp->pid, nprocs);

@@ -85,7 +85,7 @@ am_strace_OBJECTS = strace.$(OBJEXT) syscall.$(OBJEXT) count.$(OBJEXT) \
 	resource.$(OBJEXT) signal.$(OBJEXT) sock.$(OBJEXT) \
 	system.$(OBJEXT) term.$(OBJEXT) time.$(OBJEXT) scsi.$(OBJEXT) \
 	stream.$(OBJEXT) block.$(OBJEXT) pathtrace.$(OBJEXT) \
-	mtd.$(OBJEXT) vsprintf.$(OBJEXT) loop.$(OBJEXT)
+	mtd.$(OBJEXT) vsprintf.$(OBJEXT) loop.$(OBJEXT) get_pids.$(OBJEXT)
 strace_OBJECTS = $(am_strace_OBJECTS)
 strace_LDADD = $(LDADD)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -314,9 +314,9 @@ strace_SOURCES = strace.c syscall.c count.c util.c desc.c file.c ipc.c \
 		 io.c ioctl.c mem.c net.c process.c bjm.c quota.c \
 		 resource.c signal.c sock.c system.c term.c time.c \
 		 scsi.c stream.c block.c pathtrace.c mtd.c vsprintf.c \
-		 loop.c
+		 loop.c get_pids.c
 
-noinst_HEADERS = defs.h
+noinst_HEADERS = defs.h get_pids.h
 EXTRA_DIST = $(man_MANS) errnoent.sh signalent.sh syscallent.sh ioctlsort.c \
 	     debian/changelog debian/compat debian/control debian/copyright \
 	     debian/rules debian/source/format debian/watch \
@@ -539,8 +539,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/count.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/desc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/file.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/io.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/get_pids.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ioctl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/io.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ipc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/loop.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mem.Po@am__quote@

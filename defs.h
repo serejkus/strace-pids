@@ -328,6 +328,8 @@ extern long ia32;
 struct tcb {
 	int flags;		/* See below for TCB_ values */
 	int pid;		/* Process Id of this entry */
+    int ppid;       /* Parent Process Id of this entry */
+    int tgid;       /* Thread Id of this entry */
 	int u_nargs;		/* System call argument count */
 	int u_error;		/* Error code */
 	long scno;		/* System call number */

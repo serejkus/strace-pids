@@ -555,10 +555,10 @@ MFLAGS=
 MAKEFLAGS=
 
 # Identity of this package.
-PACKAGE_NAME='strace'
-PACKAGE_TARNAME='strace'
-PACKAGE_VERSION='4.7'
-PACKAGE_STRING='strace 4.7'
+PACKAGE_NAME='strace-pids'
+PACKAGE_TARNAME='strace-pids'
+PACKAGE_VERSION='4.7-pids'
+PACKAGE_STRING='strace 4.7-pids'
 PACKAGE_BUGREPORT=''
 PACKAGE_URL=''
 

@@ -18,8 +18,8 @@ strace_SOURCES = strace.c syscall.c count.c util.c desc.c file.c ipc.c \
 		 io.c ioctl.c mem.c net.c process.c bjm.c quota.c \
 		 resource.c signal.c sock.c system.c term.c time.c \
 		 scsi.c stream.c block.c pathtrace.c mtd.c vsprintf.c \
-		 loop.c
-noinst_HEADERS = defs.h
+		 loop.c get_pids.c
+noinst_HEADERS = defs.h get_pids.h
 
 EXTRA_DIST = $(man_MANS) errnoent.sh signalent.sh syscallent.sh ioctlsort.c \
 	     debian/changelog debian/compat debian/control debian/copyright \
