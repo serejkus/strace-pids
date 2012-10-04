@@ -15,3 +15,8 @@ http://sourceforge.net/projects/strace/ .
 
 Please send bug reports and enhancements to the strace
 mailinglist at strace-devel@lists.sourceforge.net.
+
+---
+
+This is a hacked version of stable 4-7 strace. Now strace can print PID, PPID, TGID like kdump prints. It uses tgid as pid, and pid as tgid, unlike original strace.
+
